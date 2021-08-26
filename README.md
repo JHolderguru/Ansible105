@@ -1,3 +1,3 @@
 Ansible Playbooks
 
-1. Printting messages using Playbooks
+1. Printing messages using Playbooks
