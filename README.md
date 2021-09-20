@@ -3,8 +3,8 @@ Ansible Playbooks
 1. Printing messages using Playbooks
 
 ```
-#Debug Module
-
+#Debug Module 
+1a. msg
 ---
  - hosts: databases
    tasks: 
@@ -30,6 +30,9 @@ ansible-playbook print_msg.yml --syntax-check
         - "More messages"
         - "Basic comcepts"
 
+```
+1b. Debug var
+```
 
 # Printing a variable value using a debug module
 #!/usr/bin/ansible-playbook
@@ -41,12 +44,53 @@ ansible-playbook print_msg.yml --syntax-check
        var: inventory_hostname
 
 #Provide x permmissions
-chmod +x debug_var_playbook 
+chmod +x debug_var_playbook.yml
 
-#run it
-debug_var_playbook
+#run it like this because of the #!/usr/bin/...
+./debug_var_playbook.yml
         
    
+```
 
+1c. verbosity
+
+```
+#vi verbosity_debug.yml
+
+---
+ - name: usage of verbosity debug module
+ hosts:
+ tasks:
+ - name: verbosity as default
+   debug:
+    msg: "this is default"
+ - name: verbosity 2
+    msg : "this is msg 2" 
+    verbosity: 2
+
+#run it  
+ansible-playbook verbosity_debug.yml -vv
+     
+```
+
+1d. prompting var playbook
+
+```
+---
+ - hosts: databases
+   vars:
+    x: 45
+    my_name: "Jon"
+   vars_prompt:
+    - name: user_name
+      prompt: Enter your use name
+      private: no
+    - name: password
+      prompt: Enter your password
+      private: yes
+   gather_facts: false
+   tasks:
+   - debug:
+      msg: "The username is :{{user_name}} and the password is {{password}}"
 
 ```
