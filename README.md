@@ -94,3 +94,38 @@ ansible-playbook verbosity_debug.yml -vv
       msg: "The username is :{{user_name}} and the password is {{password}}"
 
 ```
+
+1e. Passing cmdline args as scala.
+```
+x:34
+ansible-playbook cmd_line.yml --extra-var "x=34"
+
+# Or
+
+ansible-playbook cmd_line.yml -e "x=34" or ansible-playbook cmd_line.yml -e x=34
+
+# Or
+
+ansible-playbook cmd_line.yml -e "{'x':34}"
+
+# Or Passing multiple variables
+
+ansible-playbook cmd_line.yml -e "x=34 y=89"
+
+ansible-playbook cmd_line.yml -e "{'x':34, 'y':56}
+
+```
+
+1f. Passing your values as data,
+
+---
+ - hosts: databases
+   gather_facts:
+   tasks:
+   - debug: 
+       msg: 
+       - "the x value is: {{x}}"
+
+ansible-playbook cmd_line_args.yml -e "@variable _values.json"
+
+```
