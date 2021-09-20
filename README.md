@@ -118,6 +118,8 @@ ansible-playbook cmd_line.yml -e "{'x':34, 'y':56}
 
 1f. Passing your values as data,
 
+```
+
 ---
  - hosts: databases
    gather_facts:
@@ -126,6 +128,7 @@ ansible-playbook cmd_line.yml -e "{'x':34, 'y':56}
        msg: 
        - "the x value is: {{x}}"
 
+#runit
 ansible-playbook cmd_line_args.yml -e "@variable _values.json"
 
 ```
