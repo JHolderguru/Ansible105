@@ -129,6 +129,20 @@ ansible-playbook cmd_line.yml -e "{'x':34, 'y':56}
        - "the x value is: {{x}}"
 
 #runit
-ansible-playbook cmd_line_args.yml -e "@variable _values.json"
+ansible-playbook cmd_line_args.yml -e "@variable_values.json"
+
+```
+
+2. Playbook to install httpd
+
+```
+---
+ - name:
+   hosts: databases
+   tasks:
+   - name: working with httpd
+     yum:
+      name: httpd
+      state: present
 
 ```
